@@ -14,6 +14,10 @@ function generate_sample_sphere(m)
     return a / norm(a)
 end
 
+@doc raw"""
+    general smooth case. 
+    interpolate a smooth quadratic approximation of f
+"""
 function directional_interpolation(iter, state, V::Tv, c::Tc) where {Tv<:VecOrMat,Tc<:VecOrMat}
 
     m = length(c)
@@ -30,11 +34,11 @@ function directional_interpolation(iter, state, V::Tv, c::Tc) where {Tv<:VecOrMa
         [i <= j ? q[Int(j * (j - 1) / 2)+i] : 0
          for i = 1:m, j = 1:m], :U
     )
-
     # sanity check
     # H = iter.H(state.x); C = hcat(V...); Qc = C' * H * C
     return Q
 end
+
 
 function build_natural_basis(v)
     _len = length(v)

@@ -21,13 +21,14 @@ include("utilities/lanczos.jl")
 
 
 # algorithm implementations
-
 include("algorithms/interface.jl")
 include("algorithms/legacy/drsom_legacy.jl")
 include("algorithms/drsom.jl")
 include("algorithms/hsodm.jl")
 include("algorithms/pfh.jl")
 include("algorithms/utr.jl")
+include("nonsmooth/fbe.jl")
+include("nonsmooth/fbedrsom.jl")
 
 # Algorithm Aliases
 DRSOM2 = DimensionReducedSecondOrderMethod
@@ -35,10 +36,13 @@ HSODM = HomogeneousSecondOrderDescentMethod
 PFH = PathFollowingHSODM
 UTR = UniversalTrustRegion
 
+FBEDRSOM = ForwardBackwardDimensionReducedSecondOrderMethod
+
 function __init__()
     # Logger.initialize()
 end
 
 export Result
 export DRSOM2, HSODM, PFH, UTR
+export FBEDRSOM
 end # module
